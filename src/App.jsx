@@ -1,35 +1,55 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from "react";
+import "./App.css";
+
+
+function getQueryParamValue(param) {
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  return urlParams.get(param);
+}
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [name, setName] = useState("");
+
+  useEffect(() => {
+    const name = getQueryParamValue("amiga");
+    if (name) {
+      document.title = `Flores para ${name}`;
+      setName(name);
+    }
+  }, []);
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      {
+        name && <h1>Flores amarillas para mi amigaza {name}</h1>
+      }
+
+      <div className="flower">
+        <div className="mid"></div>
+        <div className="Petal1 p1"></div>
+        <div className="Petal1 p2"></div>
+        <div className="Petal1 p3"></div>
+        <div className="Petal1 p4"></div>
+        <div className="Petal2 p1"></div>
+        <div className="Petal2 p2"></div>
+        <div className="Petal2 p3"></div>
+        <div className="Petal2 p4"></div>
+        <div className="Petal3 p1"></div>
+        <div className="Petal3 p2"></div>
+        <div className="Petal3 p3"></div>
+        <div className="Petal3 p4"></div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+      <div className="flower-container">
+        <div className="leaf-left"></div>
+        <div className="leaf-right"></div>
+        <div className="stem"></div>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+
+      <h1>TKM</h1>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
